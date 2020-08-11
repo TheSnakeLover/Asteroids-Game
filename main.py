@@ -3,6 +3,8 @@ import random
 import pygame
 # import all important constants from pygame.locals
 from pygame.locals import * 
+# import classes
+from player import Player
 
 # start pygame
 pygame.init()
@@ -19,19 +21,26 @@ clock = pygame.time.Clock()
 # setting up background
 background_image = pygame.image.load("clouds.gif")
 background_rect = background_image.get_rect()
-# reisizing image
+# resizing image
 background_image = pygame.transform.scale(background_image,(width, height))
+# resizing the rect
 background_rect = background_image.get_rect()
+# centering the sprite on the screen
+background_rect.center = (width // 2, height // 2)
+
+# set up the player
+player = Player(image_name = "balloon.png", scale = 0.75)
 
 def main():
 	while True:
-		# setting the frame ate
+		# setting the frame rate
 		clock.tick(60)
 		# filling in background color
 		screen.fill(color)
 		# drawing backdrop
 		screen.blit(background_image, background_rect)
+		# draw the player
+		screen.blit(player.image, player.rect)
 		# update the screen
 		pygame.display.flip()
-
 main()
