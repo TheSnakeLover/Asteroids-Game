@@ -64,9 +64,9 @@ def main():
 		# Update enemies
 		enemies.update()
 		# check if player is hit
-		hits = player.sprite.spritecollide(player, enemies, False)
+		hits = pygame.sprite.spritecollide(player, enemies, False)
 		if hits:
-			player.reset(50,100)
+			player.reset((50,100))
 		# filling in background color
 		screen.fill(color)
 		# drawing backdrop
