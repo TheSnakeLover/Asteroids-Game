@@ -36,6 +36,7 @@ def main():
 		# setting the frame rate
 		clock.tick(60)
 		
+		# How the player moves
 		for event in pygame.event.get():
 			if event.type == KEYDOWN:
 				if event.key == K_DOWN:

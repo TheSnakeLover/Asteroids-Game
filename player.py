@@ -20,3 +20,12 @@ class Player(pygame.sprite.Sprite):
 
 	def move_player(self):
 		self.rect.move_ip(self.speed)
+		#left bound
+		if self.rect.left < -10:
+			self.rect.left = -10
+		#top bound
+		if self.rect.top < 0:
+			self.rect.top = 0
+		#bottom bound
+		if self.rect.bottom > 600:
+			self.rect.bottom = 600
