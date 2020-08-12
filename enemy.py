@@ -17,10 +17,10 @@ class Enemy(pygame.sprite.Sprite):
 		self.rotation = random.randint(0, 360)
 		self.speed.rotate_ip(self.rotation)
 
-		def update():
-			self.rect.move_ip(self.speed)
-			# bouncing off walls
-			if self.rect.right > 800 or self.rect.left < 0:
-				self.speed[0] *= -1
-			if self.rect.top < 0 or self.rect.bottom > 600:
-				self.speed[1] *= -1
+	def update(self):
+		self.rect.move_ip(self.speed)
+		# bouncing off walls
+		if self.rect.right > 800 or self.rect.left < 0:
+			self.speed[0] *= -1
+		if self.rect.top < 0 or self.rect.bottom > 600:
+			self.speed[1] *= -1
