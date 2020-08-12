@@ -3,6 +3,7 @@ import pygame
 
 class Player(pygame.sprite.Sprite):
 	def __init__(self, image_name, scale, pos):
+		super().__init__()
 		# get the image
 		self.image = pygame.image.load(image_name)
 		# get the rect

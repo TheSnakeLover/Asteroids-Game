@@ -6,7 +6,6 @@ from pygame.locals import *
 # import classes
 from player import Player
 from enemy import Enemy
-
 # start pygame
 pygame.init()
 
@@ -32,8 +31,12 @@ background_rect.center = (width // 2, height // 2)
 # set up the player
 player = Player(image_name = "balloon.png", scale = 0.5, pos = (50, 100))
 
-# set up the player
-enemy = Enemy(image_name = "spike.png", scale = 0.5)
+enemies = pygame.sprite.Group()
+level = 1
+for i in range(level+2):
+	# set up the player
+	enemy = Enemy(image_name = "spike.png", scale = 0.65)
+	enemies.add(enemy)
 
 def main():
 	while True:
@@ -62,6 +65,8 @@ def main():
 		screen.fill(color)
 		# drawing backdrop
 		screen.blit(background_image, background_rect)
+		# draw enemies
+		enemies.draw(screen)
 		# draw the player
 		screen.blit(player.image, player.rect)
 		# update the screen
