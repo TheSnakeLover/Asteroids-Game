@@ -5,6 +5,7 @@ import pygame
 from pygame.locals import * 
 # import classes
 from player import Player
+from enemy import Enemy
 
 # start pygame
 pygame.init()
@@ -30,6 +31,9 @@ background_rect.center = (width // 2, height // 2)
 
 # set up the player
 player = Player(image_name = "balloon.png", scale = 0.5, pos = (50, 100))
+
+# set up the player
+enemy = Enemy(image_name = "spike.png", scale = 0.5)
 
 def main():
 	while True:
