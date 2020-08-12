@@ -13,6 +13,10 @@ class Player(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect()
 		#setup player's position
 		self.reset(pos)
+		self.speed = pygame.math.Vector2 (0,0)
 
 	def reset(self, pos):
 		self.rect.center = pos
+
+	def move_player(self):
+		self.rect.move_ip(self.speed)

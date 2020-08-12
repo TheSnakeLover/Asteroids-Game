@@ -35,6 +35,24 @@ def main():
 	while True:
 		# setting the frame rate
 		clock.tick(60)
+		
+		for event in pygame.event.get():
+			if event.type == KEYDOWN:
+				if event.key == K_DOWN:
+					player.speed[1] = 10
+				if event.key == K_UP:
+					player.speed[1] = -10
+				if event.key == K_LEFT:
+					player.speed[0] = -10
+				if event.key == K_RIGHT:
+					player.speed[0] = 10
+			if event.type == KEYUP:
+				if event.key == K_DOWN or event.key == K_UP:
+					player.speed[1] = 0
+				if event.key == K_LEFT or event.key == K_RIGHT:
+					player.speed[0] = 0
+		#move player by speed	
+		player.move_player()
 		# filling in background color
 		screen.fill(color)
 		# drawing backdrop
