@@ -65,6 +65,23 @@ def main():
 					player.speed[0] = -speed
 				if event.key == K_RIGHT:
 					player.speed[0] = speed
+				if event.key == K_q:
+					level -= 1
+					if level < 1:
+						level = 1
+					death += 1
+					lower_level = 0
+					print(f"Deaths = {death}")
+					player.reset((start))
+					makeEnemies(level)
+				if event.key == K_e:
+					level += 1
+					death += 20
+					lower_level = 0
+					print(f"Deaths = {death}")
+					print(f"Level: {level}")
+					player.reset((start))
+					makeEnemies(level)
 
 			if event.type == KEYUP:
 				if event.key == K_DOWN or event.key == K_UP:
@@ -82,8 +99,10 @@ def main():
 		if hits:
 			death += 1
 			lower_level = random.randint(1,10)
-			if (lower_level == 10):
+			if (lower_level > 8):
 				level -= 1
+				if level < 1:
+						level = 1
 			lower_level = 0
 			print(f"Deaths = {death}")
 			player.reset((start))
@@ -92,6 +111,7 @@ def main():
 		if player.rect.left > width:
 			player.reset(start)
 			level += 3
+			print(f"Level: {level}")
 			makeEnemies(level)
 		# filling in background color
 		screen.fill(color)
