@@ -48,6 +48,11 @@ def main():
 	speed = 10
 	death = 0
 	makeEnemies(level)
+	
+	# initializing the font for the win screen
+	pygame.font.init()
+	FONT = pygame.font.SysFont(None, 72)
+
 	while True:
 		# setting the frame rate
 		clock.tick(60)
@@ -113,14 +118,34 @@ def main():
 			level += 3
 			print(f"Level: {level}")
 			makeEnemies(level)
+
+		# Win game
+		if (level == 40):
+			break
+	
 		# filling in background color
 		screen.fill(color)
+	
 		# drawing backdrop
 		screen.blit(background_image, background_rect)
+	
 		# draw enemies
 		enemies.draw(screen)
+
 		# draw the player
 		screen.blit(player.image, player.rect)
+		
+		# death counter
+		screen.blit(FONT.render(f"Deaths: {death}", True, (0,0,0)), (10, 10))
+	
 		# update the screen
 		pygame.display.flip()
+		
+	# displaying the win screen
+	while True:
+		clock.tick(60)
+		screen.fill(color)
+		screen.blit(FONT.render("You win!", True, (255,255,255)), (300, 300))
+		pygame.display.flip()
+
 main()
