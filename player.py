@@ -12,6 +12,8 @@ class Player(pygame.sprite.Sprite):
 		self.image = pygame.transform.scale(self.image, (int(scale*self.rect.width), int(scale*self.rect.height)))
 		# scale the rect
 		self.rect = self.image.get_rect()
+
+		self.rect.width = self.rect.width - 20
 		#setup player's position
 		self.reset(pos)
 		self.speed = pygame.math.Vector2 (0,0)

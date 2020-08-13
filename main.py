@@ -29,16 +29,23 @@ background_rect = background_image.get_rect()
 background_rect.center = (width // 2, height // 2)
 
 # set up the player
-player = Player(image_name = "balloon.png", scale = 0.5, pos = (50, 100))
+start = (50, 100)
+player = Player(image_name = "balloon.png", scale = 0.5, pos = start)
 
+# set up enemies as a group
 enemies = pygame.sprite.Group()
-level = 1
-for i in range(level+2):
-	# set up the player
-	enemy = Enemy(image_name = "spike.png", scale = 0.65)
-	enemies.add(enemy)
+
+def makeEnemies(level):
+	# clear old enemies
+	enemies.empty()
+	for i in range(level+2):
+	# set up new enemies
+		enemy = Enemy(image_name = "spike.png", scale = 0.65)
+		enemies.add(enemy)
 
 def main():
+	level = 1
+	makeEnemies(Level)
 	while True:
 		# setting the frame rate
 		clock.tick(60)
@@ -66,7 +73,7 @@ def main():
 		# check if player is hit
 		hits = pygame.sprite.spritecollide(player, enemies, False)
 		if hits:
-			player.reset((50,100))
+			player.reset((start))
 		# filling in background color
 		screen.fill(color)
 		# drawing backdrop
