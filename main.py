@@ -46,7 +46,7 @@ def makeEnemies(level):
 def main():
 	level = 1
 	speed = 10
-	deaths = 0
+	death = 0
 	makeEnemies(level)
 	while True:
 		# setting the frame rate
@@ -55,6 +55,8 @@ def main():
 		# How the player moves
 		for event in pygame.event.get():
 			if event.type == KEYDOWN:
+				if event.key == K_SPACE:
+					speed += 5
 				if event.key == K_DOWN:
 					player.speed[1] = speed
 				if event.key == K_UP:
@@ -63,15 +65,14 @@ def main():
 					player.speed[0] = -speed
 				if event.key == K_RIGHT:
 					player.speed[0] = speed
-				if event.key == K_SPACE:
-					speed = 15
+
 			if event.type == KEYUP:
 				if event.key == K_DOWN or event.key == K_UP:
 					player.speed[1] = 0
 				if event.key == K_LEFT or event.key == K_RIGHT:
 					player.speed[0] = 0
 				if event.key == K_SPACE:
-					speed = 5
+					speed -= 5
 		#move player by speed	
 		player.move_player()
 		# Update enemies
@@ -79,10 +80,12 @@ def main():
 		# check if player is hit
 		hits = pygame.sprite.spritecollide(player, enemies, False)
 		if hits:
-			lower_level = random.ranint(1,10)
+			death += 1
+			lower_level = random.randint(1,10)
 			if (lower_level == 10):
 				level -= 1
 			lower_level = 0
+			print(f"Deaths = {death}")
 			player.reset((start))
 
 		# Level completed
