@@ -72,6 +72,7 @@ def main():
 				if event.key == K_RIGHT:
 					player.speed[0] = speed
 				
+				# Go back a level
 				if event.key == K_q:
 					level -= 1
 					if level < 1:
@@ -81,6 +82,7 @@ def main():
 					player.reset((start))
 					makeEnemies(level)
 				
+				# Skip a level 
 				if event.key == K_e:
 					level += 1
 					death += 20
@@ -118,11 +120,16 @@ def main():
 		if player.rect.left > width:
 			player.reset(start)
 			level += 3
-			print(f"Level: {level}")
 			makeEnemies(level)
 
 		# Win game
 		if (level == 31):
+			WIN = 1
+			break
+		
+		# lose game
+		if (death >= 31):
+			WIN = 0
 			break
 	
 		# filling in background color
@@ -147,10 +154,16 @@ def main():
 		pygame.display.flip()
 		
 	# displaying the win screen
-	while True:
-		clock.tick(60)
-		screen.fill(color)
-		screen.blit(FONT2.render("You win!", True, (255,255,255)), (300, 300))
-		pygame.display.flip()
+	if WIN == 1:
+			while True:
+				clock.tick(60)
+				screen.fill(color)
+				screen.blit(FONT2.render("You win!", True, (255,255,255)), (300, 300))
+				pygame.display.flip()
+	else:
+			clock.tick(60)
+			screen.fill(color)
+			screen.blit(FONT2.render("You Lose!", True, (255,255,255)), (300, 300))
+			pygame.display.flip()
 
 main()
