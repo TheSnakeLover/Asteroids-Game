@@ -51,7 +51,8 @@ def main():
 	
 	# initializing the font for the win screen
 	pygame.font.init()
-	FONT = pygame.font.SysFont(None, 72)
+	FONT1 = pygame.font.SysFont(None, 55)
+	FONT2 = pygame.font.SysFont(None, 72)
 
 	while True:
 		# setting the frame rate
@@ -76,15 +77,13 @@ def main():
 						level = 1
 					death += 1
 					lower_level = 0
-					print(f"Deaths = {death}")
 					player.reset((start))
 					makeEnemies(level)
 				if event.key == K_e:
 					level += 1
 					death += 20
 					lower_level = 0
-					print(f"Deaths = {death}")
-					print(f"Level: {level}")
+
 					player.reset((start))
 					makeEnemies(level)
 
@@ -109,7 +108,6 @@ def main():
 				if level < 1:
 						level = 1
 			lower_level = 0
-			print(f"Deaths = {death}")
 			player.reset((start))
 
 		# Level completed
@@ -120,7 +118,7 @@ def main():
 			makeEnemies(level)
 
 		# Win game
-		if (level == 40):
+		if (level == 31):
 			break
 	
 		# filling in background color
@@ -136,7 +134,10 @@ def main():
 		screen.blit(player.image, player.rect)
 		
 		# death counter
-		screen.blit(FONT.render(f"Deaths: {death}", True, (0,0,0)), (10, 10))
+		screen.blit(FONT1.render(f"Deaths: {death}", True, (0,0,0)), (10, 10))
+
+		# level counter
+		screen.blit(FONT1.render(f"Level {level}", True, (0,0,0)), (640, 10))
 	
 		# update the screen
 		pygame.display.flip()
@@ -145,7 +146,7 @@ def main():
 	while True:
 		clock.tick(60)
 		screen.fill(color)
-		screen.blit(FONT.render("You win!", True, (255,255,255)), (300, 300))
+		screen.blit(FONT2.render("You win!", True, (255,255,255)), (300, 300))
 		pygame.display.flip()
 
 main()
