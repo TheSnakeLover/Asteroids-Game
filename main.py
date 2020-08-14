@@ -87,7 +87,6 @@ def main():
 					level += 1
 					death += 20
 					lower_level = 0
-
 					player.reset((start))
 					makeEnemies(level)
 
@@ -122,14 +121,14 @@ def main():
 			level += 3
 			makeEnemies(level)
 
-		# Win game
-		if (level == 31):
-			WIN = 1
-			break
-		
-		# lose game
-		if (death >= 31):
+		# Lose game
+		if (death >= 300):
 			WIN = 0
+			break
+
+		# Win game
+		if (level >= 20):
+			WIN = 1
 			break
 	
 		# filling in background color
@@ -155,15 +154,17 @@ def main():
 		
 	# displaying the win screen
 	if WIN == 1:
-			while True:
-				clock.tick(60)
-				screen.fill(color)
-				screen.blit(FONT2.render("You win!", True, (255,255,255)), (300, 300))
-				pygame.display.flip()
-	else:
+		while True:
 			clock.tick(60)
 			screen.fill(color)
-			screen.blit(FONT2.render("You Lose!", True, (255,255,255)), (300, 300))
+			screen.blit(FONT2.render("You win!", True, (255,255,255)), (280, 270))
+			pygame.display.flip()
+	else:
+		while True:
+			clock.tick(60)
+			lose = (205, 55, 55)
+			screen.fill(lose)
+			screen.blit(FONT2.render("You Lose!", True, (0,0,0)), (275, 270))
 			pygame.display.flip()
 
 main()
