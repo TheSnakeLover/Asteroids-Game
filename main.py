@@ -30,7 +30,7 @@ background_rect.center = (width // 2, height // 2)
 
 # set up the player
 start = (50, 100)
-player = Player(image_name = "balloon.png", scale = 0.5, pos = start)
+player = Player(image_name = "balloon.png", scale = 0.2, pos = start)
 
 # set up enemies as a group
 enemies = pygame.sprite.Group()
@@ -71,6 +71,7 @@ def main():
 					player.speed[0] = -speed
 				if event.key == K_RIGHT:
 					player.speed[0] = speed
+				
 				if event.key == K_q:
 					level -= 1
 					if level < 1:
@@ -79,6 +80,7 @@ def main():
 					lower_level = 0
 					player.reset((start))
 					makeEnemies(level)
+				
 				if event.key == K_e:
 					level += 1
 					death += 20
@@ -94,10 +96,12 @@ def main():
 					player.speed[0] = 0
 				if event.key == K_SPACE:
 					speed -= 5
+		
 		#move player by speed	
 		player.move_player()
 		# Update enemies
 		enemies.update()
+		
 		# check if player is hit
 		hits = pygame.sprite.spritecollide(player, enemies, False)
 		if hits:

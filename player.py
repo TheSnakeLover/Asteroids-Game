@@ -13,10 +13,10 @@ class Player(pygame.sprite.Sprite):
 		# scale the rect
 		self.rect = self.image.get_rect()
 
-		self.rect.width = self.rect.width - 20
 		#setup player's position
 		self.reset(pos)
 		self.speed = pygame.math.Vector2 (0,0)
+
 
 	def reset(self, pos):
 		self.rect.center = pos
