@@ -108,7 +108,7 @@ def main():
 		if hits:
 			death += 1
 			lower_level = random.randint(1,10)
-			if (lower_level > 8):
+			if (lower_level > 9):
 				level -= 1
 				if level < 1:
 						level = 1
